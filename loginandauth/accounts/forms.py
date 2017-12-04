@@ -31,3 +31,32 @@ class LoginUserForm(forms.Form):
 
     def get_user(self):
         return self.user_cache
+
+
+
+
+class EditUserForm(forms.ModelForm):
+    class Meta:
+        model = UserInfo
+        fields = ('username', 'email', 'nickname', 'role', 'is_active')
+        widgets = {
+            'username': forms.TextInput(attrs={'class': 'form-control', 'style': 'width:500px;'}),
+            'email': forms.TextInput(attrs={'class': 'form-control', 'style': 'width:500px;'}),
+            'nickname': forms.TextInput(attrs={'class':'form-control', 'style': 'width:500px;'}),
+            'role': forms.Select(attrs={'class': 'form-control', 'style': 'width:500px;'}),
+            'is_active': forms.Select(choices=((True, u'启用'),(False, u'禁用')),attrs={'class': 'form-control', 'style': 'width:500px;'}),
+        }
+
+    def __init__(self,*args,**kwargs):
+        super(EditUserForm,self).__init__(*args,**kwargs)
+        self.fields['username'].label = u'账 号'
+        self.fields['username'].error_messages = {'required':u'请输入账号'}
+        self.fields['email'].label = u'邮 箱'
+        self.fields['email'].error_messages = {'required':u'请输入邮箱','invalid':u'请输入有效邮箱'}
+        self.fields['nickname'].label = u'姓 名'
+        self.fields['nickname'].error_messages = {'required':u'请输入姓名'}
+        self.fields['role'].label = u'角 色'
+        self.fields['is_active'].label = u'状 态'
+
+    def clean_password(self):
+        return self.cleaned_data['password']

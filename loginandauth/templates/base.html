@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<!--
+This is a starter template page. Use this page to start your new project from
+scratch. This page gets rid of all links and provides the needed markup only.
+-->
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>AdminSet4Met</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    {% include 'link_css.html' %}
+    {% include 'head_script.html' %}
+    {% block self_head_css_js %} {% endblock %}
+<script>
+    $(document).ready(function(){
+    $('.loading').fadeOut();  <!-- fadeOut() 方法使用淡出效果来隐藏被选元素，假如该元素是隐藏的。如果元素已经隐藏，则该效果不产生任何变化，除非规定了 callback 函数。 -->
+});
+</script>
+</head>
+<!-- 类hold-transition是对IE的transition做了一些修复，在body引用即可，没什么深层含义 -->
+<!-- 默认皮肤颜色 黄 skin-yellow skin-yellow-light-->
+<!-- 布局 sidebar-mini 让侧边栏和左侧导航一起折叠，并且最小化是小图标。-->
+<body class="hold-transition skin-yellow-light sidebar-mini">
+<div class="loading"></div>
+<div class="wrapper">   <!-- body构造 -->
+
+  <!-- Main Header -->
+
+  {% include temp_name %}   <!-- django函数定义xx-header.html -->
+<script type="text/javascript">
+    $('.loading').animate({'width':'10%'},50);  //第一个进度节点
+</script>
+  <!-- Left side column. contains the logo and sidebar -->
+  {% include 'main-sidebar.html' %}
+
+<script type="text/javascript">
+    $('.loading').animate({'width':'25%'},50);  //第一个进度节点
+</script>
+  <!-- Content Wrapper. Contains page content -->
+    {% block content %}{% endblock %}
+  <!-- /.content-wrapper -->
+<script type="text/javascript">
+    $('.loading').animate({'width':'60%'},50);  //第一个进度节点
+</script>
+  <!-- Main Footer -->
+  {% include 'footer.html' %}
+<script type="text/javascript">
+    $('.loading').animate({'width':'100%'},50);  //第一个进度节点
+</script>
+
+
+</div>
+<!-- ./wrapper -->
+
+</body>
+{% block self_footer_js %} {% endblock %}
+</html>

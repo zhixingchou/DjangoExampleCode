@@ -52,6 +52,7 @@ class UserInfo(AbstractBaseUser):
     email = models.EmailField(max_length=255)
     is_active = models.BooleanField(default=False)
     is_superuser = models.CharField(max_length=64, null=True)
+    nickname = models.CharField(max_length=64, null=True)
     role = models.ForeignKey(RoleList, null=True, blank=True)
 
     objects = UserManager()
